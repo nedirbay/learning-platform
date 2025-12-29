@@ -55,6 +55,7 @@
                 </div>
             </div>
         </footer>
+        <ChatWidget />
     </div>
 </template>
 
@@ -62,6 +63,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import UserDropdown from '@/components/UserDropdown.vue';
+import ChatWidget from '@/components/ChatWidget.vue';
 
 const currentUser = ref<any>(null);
 const router = useRouter();

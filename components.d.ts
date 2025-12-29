@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AutoTyping: typeof import('./src/components/autoTyping.vue')['default']
+    ChatWidget: typeof import('./src/components/ChatWidget.vue')['default']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElAutoComplete: typeof import('element-plus/es')['ElAutoComplete']
     ElButton: typeof import('element-plus/es')['ElButton']

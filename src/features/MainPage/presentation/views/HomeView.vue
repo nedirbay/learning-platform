@@ -94,122 +94,17 @@
     </section>
 
     <!-- Stats Section -->
-    <section
-      class="py-10 bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-slate-700 shadow-sm relative z-20 -mt-8 mx-4 lg:mx-20 rounded-2xl transition-colors duration-300">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
-        <div v-for="(stat, index) in stats" :key="index" class="text-center group cursor-default">
-          <p
-            class="text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-600 mb-1 group-hover:scale-110 transition-transform duration-300">
-            {{ stat.value }}</p>
-          <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">{{ stat.label }}</p>
-        </div>
-      </div>
-    </section>
+    <!-- Stats Section -->
+    <HomeStats v-if="state.data" :stats="state.data.stats" />
+    <div v-else class="py-10 text-center text-gray-400">Statistika ýüklenýär...</div>
 
     <!-- Categories Section -->
-    <section class="py-24 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Meşhur Kategoriýalar</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Gyzyklanýan ugurleriňizi saýlaň we täze
-            başarnyklary öwrenip başlaň
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div v-for="category in categories" :key="category.name"
-            class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700 hover:border-blue-200 transition-all duration-300 group cursor-pointer text-center">
-            <div
-              class="w-16 h-16 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-              {{ category.icon }}
-            </div>
-            <h3
-              class="text-lg font-bold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              {{
-                category.name }}</h3>
-            <p
-              class="text-sm text-gray-500 dark:text-gray-400 font-medium bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full inline-block group-hover:bg-blue-50 dark:group-hover:bg-slate-600 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors">
-              {{ category.count }} Kurs</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Categories Section -->
+    <HomeCategories v-if="state.data" :categories="state.data.categories" />
 
     <!-- Featured Courses -->
-    <section class="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
-      <!-- Decoration -->
-      <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full blur-[80px]"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/10 rounded-full blur-[100px]"></div>
-
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-          <div>
-            <span class="text-blue-600 dark:text-blue-400 font-bold tracking-wider text-sm uppercase mb-2 block">Öwrenip
-              başlaň</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Iň Köp Satylan Kurslar</h2>
-          </div>
-          <button
-            class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group transition-colors">
-            Hemmesini gör
-            <span class="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="course in courses" :key="course.title"
-            class="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-            <div class="relative h-56 overflow-hidden">
-              <img :src="course.image" :alt="course.title"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-              <div
-                class="absolute top-4 left-4 bg-white/95 dark:bg-slate-800/95 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold shadow-sm uppercase tracking-wide text-blue-700 dark:text-blue-400">
-                {{ course.category }}
-              </div>
-              <div
-                class="absolute bottom-4 right-4 bg-gray-900/80 backdrop-blur text-white px-3 py-1 rounded-lg text-sm font-bold shadow-sm flex items-center gap-1">
-                ⭐️ {{ course.rating }}
-              </div>
-            </div>
-
-            <div class="p-6">
-              <h3
-                class="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors cursor-pointer">
-                {{ course.title }}
-              </h3>
-
-              <div class="flex items-center gap-3 mb-6">
-                <img :src="course.instructorImage"
-                  class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
-                <div>
-                  <p class="text-sm font-bold text-gray-800 dark:text-gray-200">{{ course.instructor }}</p>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ course.role }}</p>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-between border-t border-gray-100 dark:border-slate-700 pt-5">
-                <div class="flex flex-col">
-                  <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Bahasy</span>
-                  <span class="text-lg font-bold text-blue-600 dark:text-blue-400">{{ course.price }}</span>
-                </div>
-                <div class="flex items-center gap-4 text-gray-500 dark:text-gray-400 text-sm">
-                  <div class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg> {{ course.duration }}</div>
-                  <div class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                      </path>
-                    </svg> {{ course.lessons }} Sapak</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Featured Courses -->
+    <HomeFeaturedCourses v-if="state.data" :courses="state.data.featuredCourses" />
 
     <!-- Why Choose Us -->
     <section class="py-20 bg-indigo-900 text-white relative overflow-hidden">
@@ -287,72 +182,24 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useViewModel, useStateFlow } from '@/core/mvvm/useViewModel';
+import { HomeViewModel } from '../viewmodel/HomeViewModel';
+import HomeStats from '../components/HomeStats.vue';
+import HomeCategories from '../components/HomeCategories.vue';
+import HomeFeaturedCourses from '../components/HomeFeaturedCourses.vue';
 
 const currentUser = ref<any>(null);
+
+const vm = useViewModel(HomeViewModel);
+const state = useStateFlow(vm.uiState);
 
 onMounted(() => {
   const userStr = localStorage.getItem('user');
   if (userStr) {
     currentUser.value = JSON.parse(userStr);
   }
+  vm.init();
 });
-
-const stats = ref([
-  { label: 'Aktiw Okuwçy', value: '15k+' },
-  { label: 'Bilim Berijiler', value: '120+' },
-  { label: 'Jemi Kurslar', value: '500+' },
-  { label: 'Üstünlik', value: '98%' }
-]);
-
-const categories = ref([
-  { name: 'Programirleme', icon: '💻', count: 120 },
-  { name: 'Dizajn', icon: '🎨', count: 85 },
-  { name: 'Biznes', icon: '💼', count: 64 },
-  { name: 'Marketing', icon: '📢', count: 42 },
-  { name: 'Fotografiýa', icon: '📷', count: 30 },
-  { name: 'Şahsy Ösüş', icon: '🌱', count: 55 },
-  { name: 'Diller', icon: '🗣️', count: 48 },
-  { name: 'Saglyk', icon: '💪', count: 25 },
-]);
-
-const courses = ref([
-  {
-    title: 'Baştan Başlaýanlar Üçin Python',
-    category: 'Programirleme',
-    price: '200 TMT',
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&auto=format&fit=crop&q=80',
-    instructor: 'Aman Amanow',
-    instructorImage: 'https://randomuser.me/api/portraits/men/32.jpg',
-    role: 'Senior Developer',
-    lessons: 24,
-    duration: '12 sagat'
-  },
-  {
-    title: 'UI/UX Dizajn Esaslary we Figma',
-    category: 'Dizajn',
-    price: '250 TMT',
-    rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a5638d4b?w=600&auto=format&fit=crop&q=80',
-    instructor: 'Jeren Meredowa',
-    instructorImage: 'https://randomuser.me/api/portraits/women/44.jpg',
-    role: 'Product Designer',
-    lessons: 18,
-    duration: '8 sagat'
-  },
-  {
-    title: 'Sanly Marketing we SMM Strategiýasy',
-    category: 'Marketing',
-    price: '180 TMT',
-    rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&auto=format&fit=crop&q=80',
-    instructor: 'Guwanç Saparow',
-    instructorImage: 'https://randomuser.me/api/portraits/men/85.jpg',
-    role: 'Marketing Expert',
-    lessons: 32,
-    duration: '16 sagat'
-  }
-]);
 </script>
 
 <style scoped>
