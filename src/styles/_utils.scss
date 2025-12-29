@@ -1,0 +1,54 @@
+@mixin responsive($screensize) {
+  @if ($screensize==desktop) {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+
+  @if ($screensize==laptop) {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+
+  @if ($screensize==tablet) {
+    @media (max-width: 775px) {
+      @content;
+    }
+  }
+
+  @if ($screensize==phone) {
+    @media (max-width: 640px) {
+      @content;
+    }
+  }
+  @if ($screensize==miniphone) {
+    @media (max-width: 500px) {
+      @content;
+    }
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #7daaca;
+}
+
+.v-slide-group__next,
+.v-slide-group__prev {
+  @apply text-white;
+}
+
+.leaflet-control-attribution {
+  @apply hidden;
+}
+
+.el-image-viewer__wrapper {
+  z-index: auto;
+}

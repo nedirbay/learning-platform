@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-style: ;
+  /* scrollbar-width: thin; */
+}
+
+html,
+body {
+  font-family: "Source Sans Pro";
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* background-color: #7daaca; */
+  background-color: #525252;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/public/source-sans-pro/SourceSansPro-Regular.ttf");
+}
+
+html {
+  height: 100%;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 500;
+  /* font-style: ; */
+}
+:root {
+  --accent-color: #0000af;
+  --second-color: #5555ff;
+}
+body {
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.bgGradCol {
+  background: linear-gradient(
+    335deg,
+    color-mix(in srgb, var(--accent-color), transparent 90%) 15%,
+    color-mix(in srgb, var(--accent-color), transparent 97%) 35%,
+    transparent 70%
+  );
+}
+.bgSpotCol {
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--second-color), transparent 90%) 10%,
+    color-mix(in srgb, var(--second-color), transparent 97%) 20%,
+    transparent 70%
+  );
+}
+
+#app {
+  height: 100%;
+}
