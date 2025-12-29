@@ -1,4 +1,7 @@
-// import './assets/main.css'
+import "reflect-metadata";
+import { setupDi } from "./setupDi";
+
+setupDi();
 
 import "animate.css";
 import "@mdi/font/css/materialdesignicons.css";

@@ -4,8 +4,17 @@
         <div class="flex flex-col lg:flex-row gap-8">
             <div class="lg:w-2/3">
                 <!-- Cart Items -->
-                <div class="bg-white rounded-lg shadow p-6 mb-4">
+                <div v-if="state.items.length === 0" class="bg-white rounded-lg shadow p-6 mb-4">
                     <p class="text-gray-500">Sebet boş</p>
+                </div>
+                <div v-else class="space-y-4">
+                    <div v-for="item in state.items" :key="item.courseId"
+                        class="bg-white rounded-lg shadow p-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold">{{ item.title }}</h3>
+                        </div>
+                        <span class="font-bold">{{ item.price }} TMT</span>
+                    </div>
                 </div>
             </div>
             <div class="lg:w-1/3">
@@ -13,14 +22,20 @@
                     <h3 class="text-lg font-bold mb-4">Jemi</h3>
                     <div class="flex justify-between mb-4">
                         <span>Jemi Töleg:</span>
-                        <span class="font-bold text-xl">0 TMT</span>
+                        <span class="font-bold text-xl">{{ state.total }} TMT</span>
                     </div>
-                    <button class="w-full bg-green-600 text-white py-3 rounded font-bold">Töleg Etmek</button>
+                    <button @click="vm.checkout()" :disabled="state.items.length === 0"
+                        class="w-full bg-green-600 text-white py-3 rounded font-bold disabled:opacity-50">Töleg
+                        Etmek</button>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-// Implementation needed
+import { useViewModel, useStateFlow } from '@/core/mvvm/useViewModel';
+import { CartViewModel } from '../viewmodel/CartViewModel';
+
+const vm = useViewModel(CartViewModel);
+const state = useStateFlow(vm.uiState);
 </script>

@@ -31,6 +31,7 @@ export class CourseRepositoryImpl implements CourseRepository {
   }
 
   async getCourseById(id: string): Promise<Course | null> {
-    return null;
+    const courses = await this.getCourses();
+    return courses.find(c => c.id === id) || null;
   }
 }

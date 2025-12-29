@@ -16,7 +16,7 @@ export class BlogViewModel implements ViewModel {
     posts: [],
   });
 
-  constructor(private getPostsUseCase: GetPostsUseCase) {}
+  constructor(@inject(GetPostsUseCase) private getPostsUseCase: GetPostsUseCase) {}
 
   init() {
     this.loadPosts();

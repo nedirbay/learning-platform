@@ -18,7 +18,7 @@ export class AuthViewModel implements ViewModel {
     error: null,
   });
 
-  constructor(private loginUseCase: LoginUseCase) {}
+  constructor(@inject(LoginUseCase) private loginUseCase: LoginUseCase) {}
 
   init() {}
 

@@ -16,7 +16,7 @@ export class DashboardViewModel implements ViewModel {
     data: null,
   });
 
-  constructor(private getDashboardUseCase: GetDashboardUseCase) {}
+  constructor(@inject(GetDashboardUseCase) private getDashboardUseCase: GetDashboardUseCase) {}
 
   init() {
     this.loadData();

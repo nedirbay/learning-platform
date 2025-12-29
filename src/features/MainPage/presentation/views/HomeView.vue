@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-[calc(100vh-60px)] bg-gray-50 text-slate-800 font-sans">
+  <div class="min-h-screen bg-gray-50 text-slate-800 font-sans flex flex-col">
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-indigo-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
       <!-- Decorational Background Elements -->
@@ -275,59 +275,20 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 pt-16 pb-8">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          <div>
-            <h4 class="font-bold text-gray-900 mb-4 text-lg">Platforma</h4>
-            <ul class="space-y-2 text-gray-600">
-              <li><a href="#" class="hover:text-blue-600">Biz Barada</a></li>
-              <li><a href="#" class="hover:text-blue-600">Kurslar</a></li>
-              <li><a href="#" class="hover:text-blue-600">Mugallymlar</a></li>
-              <li><a href="#" class="hover:text-blue-600">Bahalar</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold text-gray-900 mb-4 text-lg">Komek</h4>
-            <ul class="space-y-2 text-gray-600">
-              <li><a href="#" class="hover:text-blue-600">Goldaw Merkezi</a></li>
-              <li><a href="#" class="hover:text-blue-600">Sorag-Jogap</a></li>
-              <li><a href="#" class="hover:text-blue-600">Habarlaşmak</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold text-gray-900 mb-4 text-lg">Resminamalar</h4>
-            <ul class="space-y-2 text-gray-600">
-              <li><a href="#" class="hover:text-blue-600">Ulanyş Şertleri</a></li>
-              <li><a href="#" class="hover:text-blue-600">Gizlinlik Syýasaty</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold text-gray-900 mb-4 text-lg">Habarlaş</h4>
-            <p class="text-gray-600 mb-4">Aşgabat, Türkmenistan</p>
-            <div class="flex gap-4">
-              <a href="#"
-                class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all">
-                In
-              </a>
-              <a href="#"
-                class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white transition-all">
-                Ig
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="text-center text-gray-400 text-sm border-t border-gray-200 pt-8">
-          &copy; {{ new Date().getFullYear() }} Learning Platform. Ähli hukuklar goralan.
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
+const currentUser = ref<any>(null);
+
+onMounted(() => {
+  const userStr = localStorage.getItem('user');
+  if (userStr) {
+    currentUser.value = JSON.parse(userStr);
+  }
+});
 
 const stats = ref([
   { label: 'Aktiw Okuwçy', value: '15k+' },

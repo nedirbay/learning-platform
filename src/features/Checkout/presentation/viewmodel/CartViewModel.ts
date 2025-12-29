@@ -19,7 +19,7 @@ export class CartViewModel implements ViewModel {
 
   // Inject repository directly for simplicity in this example, but should be UseCase
   constructor(
-      private checkoutUseCase: CheckoutUseCase,
+      @inject(CheckoutUseCase) private checkoutUseCase: CheckoutUseCase,
       @inject("CartRepository") private cartRepository: CartRepository
   ) {}
 

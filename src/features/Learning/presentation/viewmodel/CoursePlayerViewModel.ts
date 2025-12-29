@@ -18,7 +18,7 @@ export class CoursePlayerViewModel implements ViewModel {
     currentLesson: null,
   });
 
-  constructor(private getLessonsUseCase: GetLessonsUseCase) {}
+  constructor(@inject(GetLessonsUseCase) private getLessonsUseCase: GetLessonsUseCase) {}
 
   init() {}
 

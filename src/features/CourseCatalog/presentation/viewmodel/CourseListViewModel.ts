@@ -18,7 +18,7 @@ export class CourseListViewModel implements ViewModel {
     error: null,
   });
 
-  constructor(private getCoursesUseCase: GetCoursesUseCase) {}
+  constructor(@inject(GetCoursesUseCase) private getCoursesUseCase: GetCoursesUseCase) {}
 
   init() {
     this.fetchCourses();

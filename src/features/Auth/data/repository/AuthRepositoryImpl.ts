@@ -5,15 +5,16 @@ import { type User } from "../../domain/entity/User";
 @injectable()
 export class AuthRepositoryImpl implements AuthRepository {
   async login(email: string, password: string): Promise<User> {
-    // Mock implementation
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve({
+        const user = {
           id: "1",
           email,
           name: "Test User",
-          role: "student",
-        });
+          role: "student" as const,
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+        resolve(user);
       }, 1000);
     });
   }
@@ -21,21 +22,25 @@ export class AuthRepositoryImpl implements AuthRepository {
   async register(name: string, email: string, password: string): Promise<User> {
     return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({
-            id: "2",
+          const user = {
+            id: Date.now().toString(),
             email,
             name,
-            role: "student",
-          });
+            role: "student" as const,
+          };
+          localStorage.setItem("user", JSON.stringify(user));
+          resolve(user);
         }, 1000);
       });
   }
 
   async logout(): Promise<void> {
+    localStorage.removeItem("user");
     return Promise.resolve();
   }
 
   async getCurrentUser(): Promise<User | null> {
-    return null;
+    const userStr = localStorage.getItem("user");
+    return userStr ? JSON.parse(userStr) : null;
   }
 }
