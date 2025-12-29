@@ -45,7 +45,7 @@ const router = createRouter({
          {
           path: "profile",
           name: "profile",
-          component: () => import("../features/StudentDashboard/presentation/views/MyCoursesView.vue"), // Reuse or create profile view
+          component: () => import("../features/StudentDashboard/presentation/views/ProfileView.vue"),
         },
       ]
     },

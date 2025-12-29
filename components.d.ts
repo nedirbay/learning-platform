@@ -42,6 +42,7 @@ declare module 'vue' {
     UserAddModal: typeof import('./src/components/UsersController/userAddModal.vue')['default']
     UserAddRoleAndPermission: typeof import('./src/components/UsersController/UserAddRoleAndPermission.vue')['default']
     UserAddRoleModal: typeof import('./src/components/UsersController/UserAddRoleModal.vue')['default']
+    UserDropdown: typeof import('./src/components/UserDropdown.vue')['default']
     UserEdit: typeof import('./src/components/UsersController/userEdit.vue')['default']
     UsersCard: typeof import('./src/components/UserSettingsCards/UsersCard.vue')['default']
     UsersPermissionCard: typeof import('./src/components/UserSettingsCards/UsersPermissionCard.vue')['default']

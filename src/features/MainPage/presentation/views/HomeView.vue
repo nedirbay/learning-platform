@@ -1,5 +1,6 @@
 <template>
-  <div class="min-h-screen bg-gray-50 text-slate-800 font-sans flex flex-col">
+  <div
+    class="min-h-screen bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-gray-200 font-sans flex flex-col transition-colors duration-300">
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-indigo-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
       <!-- Decorational Background Elements -->
@@ -93,7 +94,8 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-10 bg-white border-b border-gray-100 shadow-sm relative z-20 -mt-8 mx-4 lg:mx-20 rounded-2xl">
+    <section
+      class="py-10 bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-slate-700 shadow-sm relative z-20 -mt-8 mx-4 lg:mx-20 rounded-2xl transition-colors duration-300">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
         <div v-for="(stat, index) in stats" :key="index" class="text-center group cursor-default">
           <p
@@ -105,25 +107,28 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="py-24 bg-gray-50">
+    <section class="py-24 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meşhur Kategoriýalar</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Gyzyklanýan ugurleriňizi saýlaň we täze başarnyklary öwrenip başlaň
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Meşhur Kategoriýalar</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Gyzyklanýan ugurleriňizi saýlaň we täze
+            başarnyklary öwrenip başlaň
           </p>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           <div v-for="category in categories" :key="category.name"
-            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300 group cursor-pointer text-center">
+            class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700 hover:border-blue-200 transition-all duration-300 group cursor-pointer text-center">
             <div
               class="w-16 h-16 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
               {{ category.icon }}
             </div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">{{
-              category.name }}</h3>
+            <h3
+              class="text-lg font-bold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {{
+                category.name }}</h3>
             <p
-              class="text-sm text-gray-500 font-medium bg-gray-100 px-3 py-1 rounded-full inline-block group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
+              class="text-sm text-gray-500 dark:text-gray-400 font-medium bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full inline-block group-hover:bg-blue-50 dark:group-hover:bg-slate-600 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors">
               {{ category.count }} Kurs</p>
           </div>
         </div>
@@ -131,7 +136,7 @@
     </section>
 
     <!-- Featured Courses -->
-    <section class="py-24 bg-white relative overflow-hidden">
+    <section class="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
       <!-- Decoration -->
       <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full blur-[80px]"></div>
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/10 rounded-full blur-[100px]"></div>
@@ -139,8 +144,9 @@
       <div class="container mx-auto px-4 relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
           <div>
-            <span class="text-blue-600 font-bold tracking-wider text-sm uppercase mb-2 block">Öwrenip başlaň</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Iň Köp Satylan Kurslar</h2>
+            <span class="text-blue-600 dark:text-blue-400 font-bold tracking-wider text-sm uppercase mb-2 block">Öwrenip
+              başlaň</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Iň Köp Satylan Kurslar</h2>
           </div>
           <button
             class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group transition-colors">
@@ -151,12 +157,12 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="course in courses" :key="course.title"
-            class="bg-white border rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
+            class="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
             <div class="relative h-56 overflow-hidden">
               <img :src="course.image" :alt="course.title"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               <div
-                class="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold shadow-sm uppercase tracking-wide text-blue-700">
+                class="absolute top-4 left-4 bg-white/95 dark:bg-slate-800/95 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold shadow-sm uppercase tracking-wide text-blue-700 dark:text-blue-400">
                 {{ course.category }}
               </div>
               <div
@@ -167,7 +173,7 @@
 
             <div class="p-6">
               <h3
-                class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors cursor-pointer">
+                class="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors cursor-pointer">
                 {{ course.title }}
               </h3>
 
@@ -175,17 +181,17 @@
                 <img :src="course.instructorImage"
                   class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
                 <div>
-                  <p class="text-sm font-bold text-gray-800">{{ course.instructor }}</p>
-                  <p class="text-xs text-gray-500">{{ course.role }}</p>
+                  <p class="text-sm font-bold text-gray-800 dark:text-gray-200">{{ course.instructor }}</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ course.role }}</p>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between border-t border-gray-100 pt-5">
+              <div class="flex items-center justify-between border-t border-gray-100 dark:border-slate-700 pt-5">
                 <div class="flex flex-col">
-                  <span class="text-xs text-gray-500 font-medium">Bahasy</span>
-                  <span class="text-lg font-bold text-blue-600">{{ course.price }}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Bahasy</span>
+                  <span class="text-lg font-bold text-blue-600 dark:text-blue-400">{{ course.price }}</span>
                 </div>
-                <div class="flex items-center gap-4 text-gray-500 text-sm">
+                <div class="flex items-center gap-4 text-gray-500 dark:text-gray-400 text-sm">
                   <div class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -262,10 +268,11 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-24 bg-white text-center">
+    <section class="py-24 bg-white dark:bg-slate-800 text-center transition-colors duration-300">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">Öwrenmäge başlamaga taýýarmy?</h2>
-        <p class="text-xl text-gray-600 mb-10">Müňlerçe kanagatlanan talyplara goşulyň we öz geljegiňize maýa goýuň.
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Öwrenmäge başlamaga taýýarmy?</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-10">Müňlerçe kanagatlanan talyplara goşulyň we öz
+          geljegiňize maýa goýuň.
           Mugt hasap açmak üçin bary-ýogy 1 minut gerek.</p>
         <button
           class="px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-1">
