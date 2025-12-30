@@ -10,11 +10,6 @@ lerna-debug.log*
 node_modules
 node_modules1
 
-package.json
-package1.json
-package-lock.json
-package-lock1.json
-
 .DS_Store
 dist
 dist-ssr
