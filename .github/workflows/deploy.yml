@@ -33,6 +33,6 @@ jobs:
           password: ${{ secrets.SERVER_PASS }}
           port: 22
           source: "dist/*"
-          target: "/var/www/react-app" # MAKE SURE THIS FOLDER EXISTS ON SERVER
+          target: "/var/www/learning-platform" # MAKE SURE THIS FOLDER EXISTS ON SERVER
           strip_components: 1
           overwrite: true
