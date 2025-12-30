@@ -42,6 +42,11 @@ const router = createRouter({
           name: "blog",
           component: () => import("../features/Blog/presentation/views/BlogListView.vue"),
         },
+        {
+          path: "blog/:id",
+          name: "blog-detail",
+          component: () => import("../features/Blog/presentation/views/BlogDetailView.vue"),
+        },
          {
           path: "profile",
           name: "profile",
