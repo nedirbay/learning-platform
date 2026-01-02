@@ -3,7 +3,7 @@ name: Deploy Learning Platform
 on:
   push:
     branches:
-      - main # Change this if your branch is named 'master'
+      - main
 
 jobs:
   deploy:
@@ -17,13 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # cache: "npm"  # Commented out - requires package-lock.json
 
       - name: Install and Build
         run: |
           npm install
           npm run build
-        # Vite builds to 'dist' folder by default
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
@@ -33,6 +31,6 @@ jobs:
           password: ${{ secrets.SERVER_PASS }}
           port: 22
           source: "dist/*"
-          target: "/var/www/learning-platform" # MAKE SURE THIS FOLDER EXISTS ON SERVER
+          target: "/var/www/learning-platform"
           strip_components: 1
           overwrite: true
