@@ -52,6 +52,11 @@ const router = createRouter({
           name: "profile",
           component: () => import("../features/StudentDashboard/presentation/views/ProfileView.vue"),
         },
+        {
+          path: "about",
+          name: "about",
+          component: () => import("../features/About/presentation/views/AboutView.vue"),
+        },
       ]
     },
     {

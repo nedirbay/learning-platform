@@ -17,9 +17,9 @@
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Kurslar</router-link>
                     <router-link to="/blog"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Blog</router-link>
-                    <a href="#"
+                    <router-link to="/about"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Biz
-                        Barada</a>
+                        Barada</router-link>
                 </nav>
 
                 <div class="flex items-center gap-4">
@@ -75,9 +75,9 @@
                             class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-2">Kurslar</router-link>
                         <router-link to="/blog" @click="isMenuOpen = false"
                             class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-2">Blog</router-link>
-                        <a href="#" @click="isMenuOpen = false"
+                        <router-link to="/about" @click="isMenuOpen = false"
                             class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-2">Biz
-                            Barada</a>
+                            Barada</router-link>
 
                         <div v-if="!currentUser"
                             class="flex flex-col gap-3 mt-2 pt-4 border-t border-gray-100 dark:border-slate-800">

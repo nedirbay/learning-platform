@@ -7,6 +7,7 @@ import { CartRepositoryImpl } from "./features/Checkout/data/repository/CartRepo
 import { BlogRepositoryImpl } from "./features/Blog/data/repository/BlogRepositoryImpl";
 
 import { MainPageRepositoryImpl } from "./features/MainPage/data/repository/MainPageRepositoryImpl";
+import { AboutRepositoryImpl } from "./features/About/data/repository/AboutRepositoryImpl";
 
 export function setupDi() {
   container.registerSingleton("AuthRepository", AuthRepositoryImpl);
@@ -16,4 +17,5 @@ export function setupDi() {
   container.register("CartRepository", { useClass: CartRepositoryImpl });
   container.register("BlogRepository", { useClass: BlogRepositoryImpl });
   container.register("MainPageRepository", { useClass: MainPageRepositoryImpl });
+  container.register("AboutRepository", { useClass: AboutRepositoryImpl });
 }
