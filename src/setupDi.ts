@@ -9,6 +9,9 @@ import { BlogRepositoryImpl } from "./features/Blog/data/repository/BlogReposito
 import { MainPageRepositoryImpl } from "./features/MainPage/data/repository/MainPageRepositoryImpl";
 import { AboutRepositoryImpl } from "./features/About/data/repository/AboutRepositoryImpl";
 
+// Import Admin Module
+import { AdminModule } from "./features/Admin/AdminModule";
+
 export function setupDi() {
   container.registerSingleton("AuthRepository", AuthRepositoryImpl);
   container.register("CourseRepository", { useClass: CourseRepositoryImpl });
@@ -18,4 +21,7 @@ export function setupDi() {
   container.register("BlogRepository", { useClass: BlogRepositoryImpl });
   container.register("MainPageRepository", { useClass: MainPageRepositoryImpl });
   container.register("AboutRepository", { useClass: AboutRepositoryImpl });
+  
+  // Register Admin Module
+  AdminModule.registerModule(container);
 }

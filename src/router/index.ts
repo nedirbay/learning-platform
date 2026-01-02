@@ -73,9 +73,22 @@ const router = createRouter({
     },
     {
         path: "/admin",
-        component: () => import("../layout/AdminLayout.vue"),
+        beforeEnter: (to, from, next) => {
+          // Check if user is authenticated
+          const user = localStorage.getItem('user');
+          if (user) {
+            next();
+          } else {
+            // Redirect to login with return URL
+            next({ name: 'login', query: { redirect: to.fullPath } });
+          }
+        },
         children: [
-             // Admin routes here
+          {
+            path: "",
+            name: "admin-dashboard",
+            component: () => import("../features/Admin/presentation/views/AdminDashboardView.vue"),
+          },
         ]
     }
   ],
