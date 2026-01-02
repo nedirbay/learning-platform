@@ -20,82 +20,121 @@
                 </div>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Mobile Filter Toggle Button -->
+            <div class="lg:hidden mb-6">
+                <button @click="isFilterOpen = !isFilterOpen"
+                    class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-xl border border-gray-200 dark:border-slate-700 font-semibold hover:bg-gray-50 dark:hover:bg-slate-700 transition-all shadow-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    <span>{{ isFilterOpen ? 'Filterleri Gizle' : 'Filterleri Görkez' }}</span>
+                    <svg class="w-4 h-4 transition-transform duration-300" :class="{ 'rotate-180': isFilterOpen }"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Overlay -->
+            <Transition name="fade">
+                <div v-if="isFilterOpen" @click="isFilterOpen = false" class="fixed inset-0 bg-black/50 z-40 lg:hidden">
+                </div>
+            </Transition>
+
+            <div class="flex flex-col lg:flex-row gap-8 relative">
                 <!-- Sidebar Filters -->
-                <aside class="w-full lg:w-72 flex-shrink-0 space-y-8">
-                    <!-- Categories Filter -->
-                    <div
-                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                        <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span class="text-blue-500">📁</span> Kategoriýalar
-                        </h3>
-                        <div class="space-y-3">
-                            <label v-for="category in availableCategories" :key="category"
-                                class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" :value="category" v-model="selectedCategories"
-                                    class="w-5 h-5 rounded border-gray-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-700 transition-all" />
-                                <span
-                                    class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{
-                                    category }}</span>
-                            </label>
-                        </div>
-                    </div>
+                <Transition name="slide">
+                    <aside v-show="isFilterOpen || !isMobile"
+                        class="w-full lg:w-72 flex-shrink-0 space-y-6 lg:space-y-8 fixed lg:static inset-x-0 bottom-0 top-auto lg:top-0 z-50 lg:z-auto max-h-[80vh] lg:max-h-none overflow-y-auto bg-gray-50 dark:bg-slate-900 lg:bg-transparent p-4 lg:p-0 rounded-t-3xl lg:rounded-none shadow-2xl lg:shadow-none">
 
-                    <!-- Price Filter -->
-                    <div
-                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                        <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span class="text-green-500">💰</span> Bahasy
-                        </h3>
-                        <div class="space-y-3">
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="radio" value="all" v-model="priceFilter"
-                                    class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
-                                <span
-                                    class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Ählisi</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="radio" value="free" v-model="priceFilter"
-                                    class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
-                                <span
-                                    class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Mugt</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="radio" value="paid" v-model="priceFilter"
-                                    class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
-                                <span
-                                    class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Tölegli</span>
-                            </label>
+                        <!-- Mobile Close Button -->
+                        <div class="lg:hidden flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white">Filterler</h2>
+                            <button @click="isFilterOpen = false"
+                                class="p-2 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                                <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
-                    </div>
 
-                    <!-- Rating Filter -->
-                    <div
-                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                        <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span class="text-yellow-500">⭐</span> Reýting
-                        </h3>
-                        <div class="space-y-3">
-                            <label v-for="rating in [4.5, 4.0, 3.5]" :key="rating"
-                                class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" :value="rating" v-model="selectedRatings"
-                                    class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
-                                <div class="flex items-center text-yellow-400 text-sm">
+                        <!-- Categories Filter -->
+                        <div
+                            class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                <span class="text-blue-500">📁</span> Kategoriýalar
+                            </h3>
+                            <div class="space-y-3">
+                                <label v-for="category in availableCategories" :key="category"
+                                    class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" :value="category" v-model="selectedCategories"
+                                        class="w-5 h-5 rounded border-gray-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-700 transition-all" />
                                     <span
-                                        class="text-gray-700 dark:text-gray-300 mr-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{
-                                        rating }}+</span>
-                                    <svg v-for="i in 5" :key="i" class="w-4 h-4"
-                                        :class="i <= rating ? 'fill-current' : 'text-gray-300 dark:text-slate-600'"
-                                        viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                </div>
-                            </label>
+                                        class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{
+                                            category }}</span>
+                                </label>
+                            </div>
                         </div>
-                    </div>
 
-                </aside>
+                        <!-- Price Filter -->
+                        <div
+                            class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                <span class="text-green-500">💰</span> Bahasy
+                            </h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="radio" value="all" v-model="priceFilter"
+                                        class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
+                                    <span
+                                        class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Ählisi</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="radio" value="free" v-model="priceFilter"
+                                        class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
+                                    <span
+                                        class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Mugt</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="radio" value="paid" v-model="priceFilter"
+                                        class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
+                                    <span
+                                        class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Tölegli</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div
+                            class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                <span class="text-yellow-500">⭐</span> Reýting
+                            </h3>
+                            <div class="space-y-3">
+                                <label v-for="rating in [4.5, 4.0, 3.5]" :key="rating"
+                                    class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" :value="rating" v-model="selectedRatings"
+                                        class="w-5 h-5 text-blue-600 border-gray-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-blue-500" />
+                                    <div class="flex items-center text-yellow-400 text-sm">
+                                        <span
+                                            class="text-gray-700 dark:text-gray-300 mr-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{
+                                                rating }}+</span>
+                                        <svg v-for="i in 5" :key="i" class="w-4 h-4"
+                                            :class="i <= rating ? 'fill-current' : 'text-gray-300 dark:text-slate-600'"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </aside>
+                </Transition>
 
                 <!-- Course List -->
                 <div class="flex-1">
@@ -190,7 +229,7 @@
 import { useViewModel, useStateFlow } from '@/core/mvvm/useViewModel';
 import { CourseListViewModel } from '../viewmodel/CourseListViewModel';
 import { useRouter } from 'vue-router';
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 
 const vm = useViewModel(CourseListViewModel);
 const state = useStateFlow(vm.uiState);
@@ -201,6 +240,29 @@ const searchQuery = ref('');
 const selectedCategories = ref<string[]>([]);
 const priceFilter = ref('all'); // all, free, paid
 const selectedRatings = ref<number[]>([]);
+
+// Mobile Filter State
+const isFilterOpen = ref(false);
+const isMobile = ref(false);
+
+// Check if mobile on mount and resize
+const checkMobile = () => {
+    isMobile.value = window.innerWidth < 1024; // lg breakpoint
+    if (!isMobile.value) {
+        isFilterOpen.value = true; // Always show on desktop
+    } else {
+        isFilterOpen.value = false; // Hide by default on mobile
+    }
+};
+
+onMounted(() => {
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', checkMobile);
+});
 
 // Computed Data
 const availableCategories = ['Programirleme', 'Dizajn', 'Marketing', 'Biznes', 'Diller', 'Saglyk'];
@@ -232,3 +294,35 @@ const handleCourseClick = (courseId: string) => {
     router.push(`/courses/${courseId}`);
 };
 </script>
+
+<style scoped>
+/* Fade transition for overlay */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* Slide transition for filter drawer */
+.slide-enter-active,
+.slide-leave-active {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateY(100%);
+}
+
+@media (min-width: 1024px) {
+
+    .slide-enter-from,
+    .slide-leave-to {
+        transform: translateY(0);
+    }
+}
+</style>

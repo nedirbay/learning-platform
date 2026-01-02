@@ -7,4 +7,9 @@ export interface Course {
   rating: number;
   thumbnailUrl: string;
   categories: string[];
+  duration?: string; // e.g., "5 hours", "3 weeks"
+  enrolledStudents?: number;
+  level?: 'Başlangyç' | 'Orta' | 'Ösen'; // Beginner, Intermediate, Advanced
+  language?: string;
+  lastUpdated?: string;
 }
